@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main: rgb(240, 244, 255);
+  --white: #fff;
+  --orange: #fb6c00;
+  --light_orange: #fb6d0098;
+  --black: #000;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--main);
+}
