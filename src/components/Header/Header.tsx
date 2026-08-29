@@ -4,17 +4,35 @@ import "./Header.css";
 import { IoCartOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 export default function Header() {
   const [mobileSearchBox, setMobileSearchBox] = useState(false);
 
-  
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScroll, setLastScroll] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScroll) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+      setLastScroll(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScroll]);
 
   return (
     <>
-      <div className="header_container">
+      <div className={`header_container ${showNavbar ? "visible" : "hidden"}`}>
         <div className="content">
           <div className="left">
             <h2 className="logo">Mamzi's Mini Shop</h2>
@@ -57,7 +75,7 @@ export default function Header() {
             <>
               <div className="mobile_search">
                 <input type="text" placeholder="search ..." />
-                <span  onClick={() => setMobileSearchBox(false)}>
+                <span onClick={() => setMobileSearchBox(false)}>
                   <IoClose />
                 </span>
               </div>

@@ -4,6 +4,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 0;
+  transition: all 200ms ease-in-out;
+}
+.header_container.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.header_container.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 .header_container .content {
   background-color: var(--white);
@@ -147,12 +158,10 @@
   .header_container .content .left .logo {
     font-size: 18px;
   }
-  
+
   .header_container .content .right {
     font-size: 14px;
   }
-
- 
 }
 
 @media (max-width: 820px) {
