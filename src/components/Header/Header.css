@@ -7,6 +7,7 @@
   position: sticky;
   top: 0;
   transition: all 200ms ease-in-out;
+  margin-bottom: 2rem;
 }
 .header_container.hidden {
   transform: translateY(-100%);
