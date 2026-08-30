@@ -1,4 +1,5 @@
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 // icons
 import { IoCartOutline } from "react-icons/io5";
@@ -56,18 +57,22 @@ export default function Header() {
             </div>
 
             <div className="cart">
-              <span>Cart</span>
-              <span className="badge">0</span>
-              <span>
-                <IoCartOutline />
-              </span>
+              <Link to={"/cart"}>
+                <span>Cart</span>
+                <span className="badge">0</span>
+                <span>
+                  <IoCartOutline />
+                </span>
+              </Link>
             </div>
 
             <div className="home">
-              <span>Home</span>
-              <span>
-                <GoHome />
-              </span>
+              <Link to={"/"}>
+                <span>Home</span>
+                <span>
+                  <GoHome />
+                </span>
+              </Link>
             </div>
           </div>
 

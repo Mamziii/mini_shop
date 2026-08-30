@@ -1,14 +1,18 @@
 import "./App.css";
+import { useRoutes } from "react-router-dom";
+import routes from "./routes";
 
 // components
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 function App() {
+  const router = useRoutes(routes);
+
   return (
     <>
       <Header />
-<div className="content"></div>
+      {router}
       <Footer />
     </>
   );
