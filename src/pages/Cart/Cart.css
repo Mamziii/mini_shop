@@ -109,6 +109,9 @@
   .cart_container .content {
     width: 90%;
   }
+  .cart_container .content .cart_section .peyment_section {
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 540px) {
@@ -120,6 +123,15 @@
 @media (max-width: 480px) {
   .cart_container .content {
     width: 90%;
+  }
+  .cart_container .content .cart_section {
+    flex-direction: column;
+  }
+  .cart_container .content .cart_section .peyment_section {
+    width: 100%;
+  }
+  .cart_container .content .cart_section .cart_items {
+    width: 100%;
   }
 }
 
