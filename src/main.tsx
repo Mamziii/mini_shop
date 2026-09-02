@@ -10,11 +10,11 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <QueryClientProvider client={queryClient}>
-      <CartContextProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <CartContextProvider>
           <App />
-        </BrowserRouter>
-      </CartContextProvider>
+        </CartContextProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </>,
 );

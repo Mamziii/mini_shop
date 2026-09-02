@@ -11,6 +11,8 @@ type CartContextProviderProps = {
 type CartContextType = {
   cart: ProductType[];
   addToCart: (title: string) => void;
+  deleteProduct: (title: string) => void;
+  decreaseOneItem: (title: string) => void;
 };
 
 export const CartContext = createContext({} as CartContextType);
@@ -22,8 +24,12 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   //   add product to cart
   const addToCart = (title: string) => {
+    const isAlreadyInCart = cart.some((product) => product.title === title);
+
     setCart((prevProducts) => {
-      const mainProductInCart = cart.find((product) => product.title === title);
+      const mainProductInCart = prevProducts.find(
+        (product) => product.title === title,
+      );
 
       if (mainProductInCart) {
         return prevProducts.map((product) => {
@@ -42,19 +48,42 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
       }
     });
 
-    swal({
-      title: `${title.slice(0, 13)}... added to cart successfully`,
-      icon: "success",
-      buttons: ["Ok", "Go To Cart"],
-    }).then((result) => {
-      if (result) {
-        navigate("/cart");
-      }
-    });
+    if (!isAlreadyInCart) {
+      swal({
+        title: `${title.slice(0, 13)}... added to cart successfully`,
+        icon: "success",
+        buttons: ["Ok", "Go To Cart"],
+      }).then((result) => {
+        if (result) {
+          navigate("/cart");
+        }
+      });
+    }
+  };
+
+  // decrease one item
+  const decreaseOneItem = (title: string) => {
+    setCart((prevProducts) =>
+      prevProducts.map((product) => {
+        if (product.title === title && product.quantity > 1) {
+          return { ...product, quantity: product.quantity - 1 };
+        }
+        return product;
+      }),
+    );
+  };
+
+  // delete from cart
+  const deleteProduct = (title: string) => {
+    setCart((prevProducts) =>
+      prevProducts.filter((product) => product.title !== title),
+    );
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, deleteProduct, decreaseOneItem }}
+    >
       {children}
     </CartContext.Provider>
   );

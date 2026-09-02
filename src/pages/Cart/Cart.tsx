@@ -1,61 +1,74 @@
 import "./Cart.css";
+import { useCart } from "../../Context/CartContext";
 
 // components
 import CartItem from "../../components/CartItem/CartItem";
 
-
 export default function Cart() {
+  const { cart } = useCart();
+  const delivery = 5.0;
+  const subTotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+  const orderTotal = delivery + subTotal;
+  const totalCartLength = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <>
       <div className="cart_container">
         <div className="content">
           <div className="title">
             <span>products in cart :</span>
-            <span>9</span>
+            <span>{totalCartLength}</span>
           </div>
 
-          <div className="cart_section">
-            <div className="cart_items">
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
+          {cart.length > 0 ? (
+            <>
+              <div className="cart_section">
+                <div className="cart_items">
+                  {cart.map((product) => (
+                    <CartItem {...product} key={product.id} />
+                  ))}
+                </div>
 
-            </div>
+                <div className="peyment_section">
+                  <div className="order_summary">
+                    <h3>Order Summary</h3>
+                  </div>
 
-            <div className="peyment_section">
-              <div className="order_summary">
-                <h3>Order Summary</h3>
+                  <div className="subtotal">
+                    <span>Subtotal</span>
+                    <span>$${subTotal.toFixed(2)}</span>
+                  </div>
+
+                  <div className="line"></div>
+
+                  <div className="shipping_estimate">
+                    <span>Shipping stimate</span>
+                    <span>${delivery.toFixed(2)}</span>
+                  </div>
+
+                  <div className="line"></div>
+
+                  <div className="order_total">
+                    <span>Order total</span>
+                    <span>${orderTotal.toFixed(2)}</span>
+                  </div>
+
+                  <div className="checkout_btn">
+                    <button>Chekhout</button>
+                  </div>
+                </div>
               </div>
-
-              <div className="subtotal">
-                <span>Subtotal</span>
-                <span>$99.00</span>
+            </>
+          ) : (
+            <>
+              <div style={{ height: "90vh" }} className="empty_cart">
+                Your cart is empty{" "}
               </div>
-
-              <div className="line"></div>
-
-              <div className="shipping_estimate">
-                <span>Shipping stimate</span>
-                <span>$5.00</span>
-              </div>
-
-              <div className="line"></div>
-
-              <div className="order_total">
-                <span>Order total</span>
-                <span>$114.00</span>
-              </div>
-
-              <div className="checkout_btn">
-                <button>Chekhout</button>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>

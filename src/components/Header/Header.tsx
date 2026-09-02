@@ -1,5 +1,6 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { useCart } from "../../Context/CartContext";
 
 // icons
 import { IoCartOutline } from "react-icons/io5";
@@ -9,10 +10,12 @@ import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
 export default function Header() {
+  const { cart } = useCart();
   const [mobileSearchBox, setMobileSearchBox] = useState(false);
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
+  const totalCartLength = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +62,7 @@ export default function Header() {
             <div className="cart">
               <Link to={"/cart"}>
                 <span>Cart</span>
-                <span className="badge">0</span>
+                <span className="badge">{totalCartLength}</span>
                 <span>
                   <IoCartOutline />
                 </span>
