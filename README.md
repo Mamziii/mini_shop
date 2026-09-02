@@ -8,8 +8,8 @@ A simple online shop built with **React, TypeScript, and Vite**.
 
 ## 📸 Screenshot
 
-![Screenshot](./public/screen (1).jpeg)
-![Screenshot](./public/screen (2).jpeg)
+![Screenshot](./public/screen-2.jpeg)
+![Screenshot](./public/screen-1.jpeg)
 
 
 ## ✨ Features
