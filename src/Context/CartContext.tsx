@@ -1,8 +1,9 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import swal from "sweetalert";
 import { ProductType } from "../types";
 import { useNavigate } from "react-router-dom";
 import { useFetchAllProduts } from "../Hooks/useFetchAllProducts";
+import toast from "react-hot-toast";
 
 type CartContextProviderProps = {
   children: React.ReactNode;
@@ -20,7 +21,15 @@ export const CartContext = createContext({} as CartContextType);
 const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const navigate = useNavigate();
   const { data: allProducts } = useFetchAllProduts();
-  const [cart, setCart] = useState<ProductType[]>([]);
+  const [cart, setCart] = useState<ProductType[]>(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  // save changes in localstorage
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   //   add product to cart
   const addToCart = (title: string) => {
@@ -78,6 +87,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCart((prevProducts) =>
       prevProducts.filter((product) => product.title !== title),
     );
+    toast.success("product removed from cart!")
   };
 
   return (

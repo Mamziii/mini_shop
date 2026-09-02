@@ -15,4 +15,5 @@
 body {
   font-family: sans-serif;
   background-color: var(--white);
+  position: relative;
 }

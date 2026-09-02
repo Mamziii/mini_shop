@@ -1,5 +1,6 @@
 import "./Cart.css";
 import { useCart } from "../../Context/CartContext";
+import { Link } from "react-router-dom";
 
 // components
 import CartItem from "../../components/CartItem/CartItem";
@@ -64,8 +65,11 @@ export default function Cart() {
             </>
           ) : (
             <>
-              <div style={{ height: "90vh" }} className="empty_cart">
-                Your cart is empty{" "}
+              <div className="empty_cart">
+                <div className="image">
+                  <img src="./empty-cart.png" alt="" />
+                </div>
+                <Link to={"/"}>Go Back To Shop</Link>
               </div>
             </>
           )}
