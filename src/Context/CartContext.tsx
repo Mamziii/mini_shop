@@ -11,11 +11,11 @@ type CartContextProviderProps = {
 type CartContextType = {
   cart: ProductType[];
   addToCart: (title: string) => void;
-  removeFromCart: (title: string) => void;
-  deleteAll: () => void;
+//   removeFromCart: (title: string) => void;
+//   deleteAll: () => void;
 };
 
-export const cartContext = createContext({} as CartContextType);
+export const CartContext = createContext({} as CartContextType);
 
 const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const navigate = useNavigate();
@@ -54,4 +54,12 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
       }
     });
   };
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
+
+export default CartContextProvider;
