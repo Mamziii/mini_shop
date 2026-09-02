@@ -40,7 +40,7 @@ export default function Cart() {
 
                   <div className="subtotal">
                     <span>Subtotal</span>
-                    <span>$${subTotal.toFixed(2)}</span>
+                    <span>${subTotal.toFixed(2)}</span>
                   </div>
 
                   <div className="line"></div>
