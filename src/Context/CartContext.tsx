@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 import swal from "sweetalert";
 import { ProductType } from "../types";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,6 @@ type CartContextProviderProps = {
 type CartContextType = {
   cart: ProductType[];
   addToCart: (title: string) => void;
-//   removeFromCart: (title: string) => void;
-//   deleteAll: () => void;
 };
 
 export const CartContext = createContext({} as CartContextType);
@@ -63,3 +61,9 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 };
 
 export default CartContextProvider;
+
+export const useCart = () => {
+  const contxt = useContext(CartContext);
+  if (!contxt) throw new Error("usecart must be used whit in cartProvider");
+  return contxt;
+};
