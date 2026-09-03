@@ -14,6 +14,7 @@ type CartContextType = {
   addToCart: (title: string) => void;
   deleteProduct: (title: string) => void;
   decreaseOneItem: (title: string) => void;
+  clearCart: () => void;
 };
 
 export const CartContext = createContext({} as CartContextType);
@@ -87,12 +88,17 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
     setCart((prevProducts) =>
       prevProducts.filter((product) => product.title !== title),
     );
-    toast.success("product removed from cart!")
+    toast.success("product removed from cart!");
+  };
+
+  // clear cart
+  const clearCart = () => {
+    setCart([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, deleteProduct, decreaseOneItem }}
+      value={{ cart, addToCart, deleteProduct, decreaseOneItem , clearCart }}
     >
       {children}
     </CartContext.Provider>

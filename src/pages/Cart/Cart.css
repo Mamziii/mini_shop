@@ -78,7 +78,7 @@
 .cart_container .content .cart_section .peyment_section .checkout_btn {
   width: 100%;
 }
-.cart_container .content .cart_section .peyment_section .checkout_btn button {
+.cart_container .content .cart_section .peyment_section .checkout_btn a {
   width: 100%;
   padding: 0.8rem;
   border-radius: 10px;

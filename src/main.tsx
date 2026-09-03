@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <CartContextProvider>
           <App />
-          <Toaster position="bottom-right"/>
+          <Toaster position="top-right"/>
         </CartContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
