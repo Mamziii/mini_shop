@@ -70,6 +70,13 @@
 }
 
 @media (max-width: 480px) {
+  .card {
+ 
+  height: 350px;
+  
+}
+
+
   .card .details {
     font-size: 14px;
   }

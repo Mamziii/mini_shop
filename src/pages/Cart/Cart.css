@@ -87,6 +87,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   cursor: pointer;
   background-color: var(--orange);
+  color: inherit;
 }
 /* cart item */
 .cart_container .content .cart_section .cart_items {
@@ -143,6 +144,7 @@
   }
   .cart_container .content .cart_section .peyment_section {
     width: 100%;
+    margin-top: 2rem;
   }
   .cart_container .content .cart_section .cart_items {
     width: 100%;
